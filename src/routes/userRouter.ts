@@ -5,6 +5,7 @@ import { UserController } from '../controllers/UserController'
 import { validateBody } from '../middleware/validateBody'
 import { UserService } from '../service/UserService'
 import { UserSequelizeRepository } from '../repository/sequelize/UserRepository'
+import { validateToken } from '../middleware/validateToken'
 
 const userSequelizeRepository = new UserSequelizeRepository()
 const userModel = new UserModel(userSequelizeRepository)
@@ -21,5 +22,8 @@ router
   .post('/login',
     validateBody(['email', 'password']),
     (req, res) => userController.login(req, res))
+  .get('/users',
+    validateToken,
+    (req, res) => userController.getAll(req, res))
 
 export { router as userRouter }

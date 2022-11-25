@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:integration": "nyc mocha --require ts-node/register src/tests/integration/*.test.ts --exit",
+    "test:integration": "mocha --require ts-node/register src/tests/integration/*.test.ts --exit",
     "db:reset": "npx -y tsc && npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate",
     "dev": "tsnd src/api/server.ts"
   },

@@ -6,6 +6,7 @@ import { IUserDTO } from '../interfaces/models/IUserDTO'
 import { UnauthorizedError } from '../errors/unauthorized-error'
 import { INewUserBody } from '../interfaces/payloads/INewUserBody'
 import { ILogin } from '../interfaces/payloads/ILogin'
+import User from '../database/entities/User'
 
 export class UserService implements IUserService {
   public readonly userModel: IUserModel
@@ -41,5 +42,10 @@ export class UserService implements IUserService {
     const payload = { id, username, email }
     const token = this.tokenServices.createToken(payload)
     return token
+  }
+
+  async getAll (): Promise<User[]> {
+    const users = await this.userModel.getAll()
+    return users
   }
 }

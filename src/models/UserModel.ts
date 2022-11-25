@@ -3,6 +3,7 @@ import { IUserRepository } from './../interfaces/repository/IUserRepository'
 import { IUserModel } from './../interfaces/models/IUserModel'
 import { IUserDTO } from '../interfaces/models/IUserDTO'
 import { INewUserBody } from '../interfaces/payloads/INewUserBody'
+import User from '../database/entities/User'
 
 export class UserModel implements IUserModel {
   private readonly userRepository: IUserRepository
@@ -19,5 +20,10 @@ export class UserModel implements IUserModel {
   async findByEmail (email: string): Promise<IUserEntity | null> {
     const user = await this.userRepository.findByEmail(email)
     return user
+  }
+
+  async getAll (): Promise<User[]> {
+    const users = await this.userRepository.getAll()
+    return users
   }
 }

@@ -15,4 +15,9 @@ export class UserSequelizeRepository implements IUserRepository {
   async findByEmail (email: string): Promise<IUserDTO & { password: string } | null> {
     return await this.userModel.findOne({ where: { email } })
   }
+
+  async getAll (): Promise<User[]> {
+    const users = await this.userModel.findAll()
+    return users
+  }
 }

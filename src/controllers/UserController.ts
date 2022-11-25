@@ -17,4 +17,9 @@ export class UserController {
     const token = await this.userService.login(request.body)
     return response.status(200).json({ token })
   }
+
+  async getAll (request: Request, response: Response): Promise<Response> {
+    const users = await this.userService.getAll()
+    return response.status(200).json(users)
+  }
 }

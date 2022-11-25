@@ -4,7 +4,7 @@ import { MissingParamError } from '../errors/missing-param-error'
 type CreateFields = ['email', 'username', 'password']
 type LoginFields = ['email', 'password']
 
-type RequiredFields = LoginFields | CreateFields
+type RequiredFields = LoginFields | CreateFields // Union Types
 
 const validateBody = (requiredFields: RequiredFields) => (req: Request, res: Response, next: NextFunction): any => {
   for (const field of requiredFields) {
